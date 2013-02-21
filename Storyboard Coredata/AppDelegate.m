@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 
-#import "MainViewController.h"
+#import "TabbarController.h"
+#import "SearchViewController.h"
+#import "AddStaffViewController.h"
 
 @implementation AppDelegate
 
@@ -24,12 +26,15 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize navController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+       
     // Override point for customization after application launch.
-    MainViewController *controller = (MainViewController *)self.window.rootViewController;
-    controller.managedObjectContext = self.managedObjectContext;
+    TabbarController *tabbarController = (TabbarController *)self.window.rootViewController;
+    tabbarController.managedObjectContext = self.managedObjectContext;
+
     return YES;
 }
 							

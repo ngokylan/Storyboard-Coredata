@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Notification" syncable="YES">
+        <attribute name="attach" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="staff_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Staff" isAbstract="YES" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="staff_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="staff_log" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work_log" syncable="YES"/>
+        <relationship name="staff_notification" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Notification" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="pass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Work_log" syncable="YES">
+        <attribute name="datetime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="log_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="staff_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Notification" positionX="232" positionY="189" width="128" height="120"/>
+        <element name="Staff" positionX="36" positionY="189" width="128" height="135"/>
+        <element name="User" positionX="-90" positionY="389" width="128" height="73"/>
+        <element name="Work_log" positionX="-171" positionY="192" width="128" height="90"/>
+    </elements>
 </model>

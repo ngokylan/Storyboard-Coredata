@@ -7,17 +7,29 @@
 //
 
 #import "MainViewController.h"
+#import "AppDelegate.h"
 
-@interface MainViewController ()
+@interface MainViewController (){
+    NSManagedObjectContext *context;
+}
 
 @end
 
 @implementation MainViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [[self firstnameTextField] setDelegate:self];
+    [[self lastnameTextField] setDelegate:self];
+    
+    //initial app delegate
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    context = [appDelegate managedObjectContext];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,7 +55,31 @@
 - (void)dealloc
 {
     [_managedObjectContext release];
+    [_firstnameTextField release];
+    [_lastnameTextField release];
+    [_displayLabel release];
     [super dealloc];
 }
 
+- (IBAction)AddPerson:(id)sender {
+    NSEntityDescription *entittyDesc = [NSEntityDescription entityForName:@"Staff" inManagedObjectContext:context];
+    NSManagedObject *newPerson = [[NSManagedObject alloc] initWithEntity:entittyDesc insertIntoManagedObjectContext:context];
+    
+    [newPerson setValue:self.firstnameTextField.text forKey:@"firstname"];
+    [newPerson setValue:self.lastnameTextField.text forKey:@"lastname"];
+    
+    NSError *error;
+    [context save:&error];
+    
+    self.displayLabel.text = @"Staff Added";
+    
+    self.firstnameTextField.text = @"";
+    self.lastnameTextField.text = @"";
+    
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return [textField resignFirstResponder];
+}
 @end
